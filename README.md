@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="Screenshot 2026-05-20 at 11.33.22 AM.webp" alt="iClora logo" width="96" />
+</p>
+
 # iClora Photos App
 
 iClora Photos App is the Android companion for the iClora web cloud platform at [www.iclora.app](https://www.iclora.app). It is built for fast, secure photo backup from an Android phone to the user's own iClora Photos cloud.
