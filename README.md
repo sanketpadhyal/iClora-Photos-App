@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Screenshot 2026-05-20 at 11.33.22 AM.webp" alt="iClora logo" width="96" />
+  <img src="photos.webp" alt="iClora logo" width="96" />
 </p>
 
 # iClora Photos App
