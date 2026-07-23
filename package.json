@@ -1,0 +1,43 @@
+{
+  "name": "iclora-android",
+  "version": "0.1.0",
+  "private": false,
+  "main": "expo/AppEntry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "prebuild": "expo prebuild --platform android",
+    "ios": "expo run:ios",
+    "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~5.0.5",
+    "@react-native-google-signin/google-signin": "^16.1.2",
+    "expo": "^53.0.0",
+    "expo-application": "~6.1.5",
+    "expo-auth-session": "~6.2.1",
+    "expo-clipboard": "~7.1.5",
+    "expo-crypto": "~14.1.5",
+    "expo-dev-client": "~5.2.4",
+    "expo-file-system": "~18.1.11",
+    "expo-image-picker": "~16.1.4",
+    "expo-linear-gradient": "^14.1.5",
+    "expo-linking": "~7.1.7",
+    "expo-media-library": "~17.1.7",
+    "expo-notifications": "~0.31.5",
+    "expo-secure-store": "~14.2.4",
+    "expo-status-bar": "^2.2.3",
+    "expo-web-browser": "~14.2.0",
+    "firebase": "^12.13.0",
+    "patch-package": "^8.0.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.6",
+    "react-native-background-actions": "^4.1.0",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-web": "^0.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2"
+  }
+}

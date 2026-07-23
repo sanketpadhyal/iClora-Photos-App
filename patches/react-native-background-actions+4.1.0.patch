@@ -1,0 +1,49 @@
+diff --git a/node_modules/react-native-background-actions/android/src/main/java/com/asterinet/react/bgactions/RNBackgroundActionsTask.java b/node_modules/react-native-background-actions/android/src/main/java/com/asterinet/react/bgactions/RNBackgroundActionsTask.java
+index 963b788..640918e 100644
+--- a/node_modules/react-native-background-actions/android/src/main/java/com/asterinet/react/bgactions/RNBackgroundActionsTask.java
++++ b/node_modules/react-native-background-actions/android/src/main/java/com/asterinet/react/bgactions/RNBackgroundActionsTask.java
+@@ -23,7 +23,7 @@ import com.facebook.react.jstasks.HeadlessJsTaskConfig;
+ final public class RNBackgroundActionsTask extends HeadlessJsTaskService {
+ 
+     public static final int SERVICE_NOTIFICATION_ID = 92901;
+-    private static final String CHANNEL_ID = "RN_BACKGROUND_ACTIONS_CHANNEL";
++    private static final String CHANNEL_ID = "RN_BACKGROUND_ACTIONS_CHANNEL_SOUND_1";
+ 
+     @SuppressLint("UnspecifiedImmutableFlag")
+     @NonNull
+@@ -59,7 +59,8 @@ final public class RNBackgroundActionsTask extends HeadlessJsTaskService {
+                 .setSmallIcon(iconInt)
+                 .setContentIntent(contentIntent)
+                 .setOngoing(true)
+-                .setPriority(NotificationCompat.PRIORITY_MIN)
++                .setPriority(NotificationCompat.PRIORITY_HIGH)
++                .setOnlyAlertOnce(true)
+                 .setColor(color);
+ 
+         final Bundle progressBarBundle = bgOptions.getProgressBar();
+@@ -130,9 +131,24 @@ final public class RNBackgroundActionsTask extends HeadlessJsTaskService {
+ 
+     private void createNotificationChannel(@NonNull final String taskTitle, @NonNull final String taskDesc) {
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+-            final int importance = NotificationManager.IMPORTANCE_LOW;
++            final int importance = NotificationManager.IMPORTANCE_HIGH;
+             final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, taskTitle, importance);
+             channel.setDescription(taskDesc);
++
++            try {
++                int soundResourceId = getResources().getIdentifier("notification_sound", "raw", getPackageName());
++                if (soundResourceId != 0) {
++                    Uri soundUri = Uri.parse("android.resource://" + getPackageName() + "/" + soundResourceId);
++                    android.media.AudioAttributes audioAttributes = new android.media.AudioAttributes.Builder()
++                            .setContentType(android.media.AudioAttributes.CONTENT_TYPE_SONIFICATION)
++                            .setUsage(android.media.AudioAttributes.USAGE_NOTIFICATION)
++                            .build();
++                    channel.setSound(soundUri, audioAttributes);
++                }
++            } catch (Exception e) {
++                // ignore
++            }
++
+             final NotificationManager notificationManager = getSystemService(NotificationManager.class);
+             notificationManager.createNotificationChannel(channel);
+         }
